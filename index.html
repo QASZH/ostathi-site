@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>أستاذي | الرئيسية</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <div class="nav">
+    <div class="navin">
+      <div class="brand">
+        <div class="logo" id="logoChar">أ</div>
+        <div>
+          <div id="brandName">أستاذي</div>
+          <div class="small" id="brandTag">معلّم ذكي يتكيّف معك</div>
+        </div>
+      </div>
+      <div class="links" id="navLinks"></div>
+      <div class="links">
+        <a class="btn btn2" href="start.html">ابدأ الآن</a>
+        <a class="btn" href="how.html">كيف يعمل؟</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <section class="card">
+      <h1 id="heroTitle"></h1>
+      <p class="sub" id="heroSub"></p>
+      <div class="kpis" id="kpis"></div>
+      <div class="hr"></div>
+      <div class="links">
+        <a class="btn btn2" href="start.html">ابدأ التجربة</a>
+        <a class="btn" href="examples.html">شوف أمثلة</a>
+      </div>
+      <div class="small">لوحة التحكم: افتح <b>admin.html</b></div>
+    </section>
+  </main>
+
+  <script type="module">
+    import { boot } from "./assets/app.js";
+    boot("home");
+  </script>
+</body>
+</html>

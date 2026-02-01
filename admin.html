@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>أستاذي | لوحة التحكم</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <div class="nav"><div class="navin">
+    <div class="brand"><div class="logo" id="logoChar">أ</div><div><div id="brandName">أستاذي</div><div class="small" id="brandTag"></div></div></div>
+    <div class="links" id="navLinks"></div>
+    <div class="links"><a class="btn btn2" href="index.html">عرض الموقع</a></div>
+  </div></div>
+
+  <main class="wrap">
+    <section class="card">
+      <h1>لوحة التحكم</h1>
+      <p class="sub">عدّل الإعدادات من JSON (تحكم كامل). احفظ ثم ارجع للموقع وشوف.</p>
+
+      <div class="grid2">
+        <div class="demo">
+          <div class="small">أزرار:</div>
+          <div class="hr"></div>
+          <div class="links">
+            <button class="btn btn2" id="btnSave">حفظ</button>
+            <button class="btn" id="btnExport">تصدير</button>
+            <button class="btn" id="btnImport">استيراد</button>
+            <button class="btn" id="btnReset">افتراضي</button>
+          </div>
+          <div class="hr"></div>
+          <div class="small">إذا خبصت: اضغط “افتراضي”.</div>
+        </div>
+
+        <div class="demo">
+          <div class="small">الإعدادات (JSON):</div>
+          <div class="hr"></div>
+          <textarea id="adminJson" spellcheck="false"></textarea>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module">
+    import { boot } from "./assets/app.js";
+    boot("admin");
+  </script>
+</body>
+</html>
