@@ -3,47 +3,145 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>أستاذي | لوحة التحكم</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <title>لوحة التحكم | أستاذي</title>
+  <link rel="stylesheet" href="./assets/style.css" />
+  <style>
+    .adminWrap{max-width:980px;margin:24px auto;padding:16px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    label{display:block;margin:10px 0 6px;color:#cfd7e6;font-size:14px}
+    input, textarea, select{
+      width:100%; padding:10px 12px; border-radius:10px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.25); color:#e9efff;
+      outline:none;
+    }
+    textarea{min-height:140px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace}
+    .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .btnA{cursor:pointer;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.25);color:#e9efff}
+    .btnP{cursor:pointer;padding:10px 14px;border-radius:12px;border:1px solid rgba(85,255,200,.35);background:rgba(0,255,200,.12);color:#e9efff}
+    .hint{opacity:.75;font-size:13px;margin-top:8px}
+    .ok{color:#7dffb4}
+    .warn{color:#ffd27d}
+  </style>
 </head>
+
 <body>
-  <div class="nav"><div class="navin">
-    <div class="brand"><div class="logo" id="logoChar">أ</div><div><div id="brandName">أستاذي</div><div class="small" id="brandTag"></div></div></div>
-    <div class="links" id="navLinks"></div>
-    <div class="links"><a class="btn btn2" href="index.html">عرض الموقع</a></div>
-  </div></div>
+  <main class="adminWrap">
+    <h1 style="margin:0 0 6px">لوحة التحكم</h1>
+    <div class="hint">
+      هذا الـ MVP يحفظ التعديلات على جهازك (localStorage).  
+      لو تبغى تعممها لكل الزوار: صدّر JSON، ثم ضعه في <b>assets/config.js</b> وارفعه GitHub.
+    </div>
 
-  <main class="wrap">
-    <section class="card">
-      <h1>لوحة التحكم</h1>
-      <p class="sub">عدّل الإعدادات من JSON (تحكم كامل). احفظ ثم ارجع للموقع وشوف.</p>
+    <div class="grid" style="margin-top:14px">
+      <section class="card" style="padding:16px">
+        <h2 style="margin:0 0 10px">محتوى الصفحة الرئيسية</h2>
 
-      <div class="grid2">
-        <div class="demo">
-          <div class="small">أزرار:</div>
-          <div class="hr"></div>
-          <div class="links">
-            <button class="btn btn2" id="btnSave">حفظ</button>
-            <button class="btn" id="btnExport">تصدير</button>
-            <button class="btn" id="btnImport">استيراد</button>
-            <button class="btn" id="btnReset">افتراضي</button>
-          </div>
-          <div class="hr"></div>
-          <div class="small">إذا خبصت: اضغط “افتراضي”.</div>
+        <label>العنوان الرئيسي (Hero)</label>
+        <input id="heroTitle" placeholder="أستاذي... معلمك الذكي اللي يفهمك" />
+
+        <label>الوصف (Hero)</label>
+        <textarea id="heroSub" placeholder="وصف مختصر قوي..."></textarea>
+
+        <label>إظهار قسم المشكلة؟</label>
+        <select id="showProblem">
+          <option value="true">نعم</option>
+          <option value="false">لا</option>
+        </select>
+
+        <label>إظهار قسم الحل؟</label>
+        <select id="showSolution">
+          <option value="true">نعم</option>
+          <option value="false">لا</option>
+        </select>
+
+        <div class="row">
+          <button class="btnP" id="btnSave">حفظ على جهازي</button>
+          <button class="btnA" id="btnReset">إرجاع الافتراضي</button>
+          <button class="btnA" id="btnPreview">فتح الرئيسية</button>
+        </div>
+        <div class="hint"><span class="ok">✓</span> بعد الحفظ افتح الرئيسية وشوف التغيير مباشرة.</div>
+      </section>
+
+      <section class="card" style="padding:16px">
+        <h2 style="margin:0 0 10px">JSON (تصدير / استيراد)</h2>
+
+        <label>البيانات الحالية</label>
+        <textarea id="jsonBox" spellcheck="false"></textarea>
+
+        <div class="row">
+          <button class="btnA" id="btnExport">تحديث المربع من القيم</button>
+          <button class="btnA" id="btnImport">استيراد من المربع</button>
         </div>
 
-        <div class="demo">
-          <div class="small">الإعدادات (JSON):</div>
-          <div class="hr"></div>
-          <textarea id="adminJson" spellcheck="false"></textarea>
+        <div class="hint">
+          <span class="warn">مهم:</span> هذا JSON هو اللي تقدر تحطه داخل <b>assets/config.js</b> عشان يصير رسمي للزوار.
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </main>
 
   <script type="module">
-    import { boot } from "./assets/app.js";
-    boot("admin");
+    import { getConfig, setConfig, resetConfig, exportConfig } from "./assets/app.js";
+
+    const $ = (id)=>document.getElementById(id);
+
+    function loadUI(){
+      const cfg = getConfig();
+      $("heroTitle").value = cfg.home.heroTitle || "";
+      $("heroSub").value   = cfg.home.heroSub || "";
+      $("showProblem").value = String(cfg.home.showProblem ?? true);
+      $("showSolution").value = String(cfg.home.showSolution ?? true);
+      $("jsonBox").value = JSON.stringify(cfg, null, 2);
+    }
+
+    function readUI(){
+      return {
+        home:{
+          heroTitle: $("heroTitle").value.trim(),
+          heroSub: $("heroSub").value.trim(),
+          showProblem: $("showProblem").value === "true",
+          showSolution: $("showSolution").value === "true",
+        }
+      };
+    }
+
+    $("btnSave").addEventListener("click", ()=>{
+      const patch = readUI();
+      setConfig(patch);
+      loadUI();
+      alert("تم الحفظ على جهازك ✅");
+    });
+
+    $("btnReset").addEventListener("click", ()=>{
+      resetConfig();
+      loadUI();
+      alert("تمت العودة للافتراضي ✅");
+    });
+
+    $("btnPreview").addEventListener("click", ()=>{
+      window.location.href = "./index.html";
+    });
+
+    $("btnExport").addEventListener("click", ()=>{
+      $("jsonBox").value = exportConfig();
+      alert("تم تحديث JSON ✅");
+    });
+
+    $("btnImport").addEventListener("click", ()=>{
+      try{
+        const obj = JSON.parse($("jsonBox").value);
+        // استيراد كامل
+        localStorage.setItem("ostathi_config", JSON.stringify(obj));
+        loadUI();
+        alert("تم الاستيراد ✅ افتح الصفحة الرئيسية وشوف");
+      }catch(e){
+        alert("JSON غير صالح. تأكد من الأقواس والفواصل.");
+      }
+    });
+
+    loadUI();
   </script>
 </body>
 </html>
