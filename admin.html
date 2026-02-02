@@ -6,77 +6,136 @@
   <title>لوحة التحكم | أستاذي</title>
   <link rel="stylesheet" href="./assets/style.css" />
   <style>
-    .adminWrap{max-width:980px;margin:24px auto;padding:16px}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    @media (max-width:900px){.grid{grid-template-columns:1fr}}
-    label{display:block;margin:10px 0 6px;color:#cfd7e6;font-size:14px}
+    .adminWrap{max-width:1100px;margin:24px auto;padding:16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(340px, 1fr));gap:16px}
+    label{display:block;margin:12px 0 6px;color:#cfd7e6;font-size:14px;font-weight:bold}
     input, textarea, select{
       width:100%; padding:10px 12px; border-radius:10px;
       border:1px solid rgba(255,255,255,.12);
       background:rgba(0,0,0,.25); color:#e9efff;
-      outline:none;
+      outline:none; font-family:inherit;
     }
-    textarea{min-height:140px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace}
-    .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-    .btnA{cursor:pointer;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.25);color:#e9efff}
-    .btnP{cursor:pointer;padding:10px 14px;border-radius:12px;border:1px solid rgba(85,255,200,.35);background:rgba(0,255,200,.12);color:#e9efff}
+    input[type="color"] { padding: 4px; height: 42px; cursor: pointer; }
+    textarea{min-height:100px; line-height:1.6; font-size:14px}
+    .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .btnA{cursor:pointer;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.25);color:#e9efff;flex:1;text-align:center}
+    .btnP{cursor:pointer;padding:10px 14px;border-radius:12px;border:1px solid rgba(85,255,200,.35);background:rgba(0,255,200,.12);color:#e9efff;flex:2;text-align:center;font-weight:bold}
     .hint{opacity:.75;font-size:13px;margin-top:8px}
     .ok{color:#7dffb4}
     .warn{color:#ffd27d}
+    section.card { height: 100%; }
+    h2 { margin: 0 0 16px; font-size: 1.4em; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; }
   </style>
 </head>
 
 <body>
   <main class="adminWrap">
-    <h1 style="margin:0 0 6px">لوحة التحكم</h1>
-    <div class="hint">
-      هذا الـ MVP يحفظ التعديلات على جهازك (localStorage).  
-      لو تبغى تعممها لكل الزوار: صدّر JSON، ثم ضعه في <b>assets/config.js</b> وارفعه GitHub.
-    </div>
+    <header style="margin-bottom:24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="margin:0">لوحة التحكم</h1>
+        <div class="hint">عدّل المحتوى، الألوان، والإعدادات لكل الموقع.</div>
+      </div>
+      <div class="row" style="margin:0; width:auto;">
+        <button class="btnP" id="btnSaveTop">حفظ التغييرات</button>
+        <button class="btnA" id="btnPreviewTop">معاينة الموقع</button>
+      </div>
+    </header>
 
-    <div class="grid" style="margin-top:14px">
-      <section class="card" style="padding:16px">
-        <h2 style="margin:0 0 10px">محتوى الصفحة الرئيسية</h2>
+    <div class="grid">
+      <!-- 1. Brand & Colors -->
+      <section class="card">
+        <h2>الهوية والألوان</h2>
+        <label>اسم الموقع (Brand Name)</label>
+        <input id="brandName" />
 
-        <label>العنوان الرئيسي (Hero)</label>
-        <input id="heroTitle" placeholder="أستاذي... معلمك الذكي اللي يفهمك" />
+        <label>الشعار النصي (Logo Char)</label>
+        <input id="logoChar" style="width:60px; text-align:center;" />
 
-        <label>الوصف (Hero)</label>
-        <textarea id="heroSub" placeholder="وصف مختصر قوي..."></textarea>
+        <label>الوصف القصير (Tagline)</label>
+        <input id="brandTag" />
 
-        <label>إظهار قسم المشكلة؟</label>
-        <select id="showProblem">
-          <option value="true">نعم</option>
-          <option value="false">لا</option>
-        </select>
-
-        <label>إظهار قسم الحل؟</label>
-        <select id="showSolution">
-          <option value="true">نعم</option>
-          <option value="false">لا</option>
-        </select>
-
-        <div class="row">
-          <button class="btnP" id="btnSave">حفظ على جهازي</button>
-          <button class="btnA" id="btnReset">إرجاع الافتراضي</button>
-          <button class="btnA" id="btnPreview">فتح الرئيسية</button>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;">
+          <div>
+            <label>لون الخلفية</label>
+            <input type="color" id="colBg" />
+          </div>
+          <div>
+            <label>لون البطاقات</label>
+            <input type="color" id="colCard" />
+          </div>
+          <div>
+            <label>اللون الأساسي (Accent)</label>
+            <input type="color" id="colAccent" />
+          </div>
+          <div>
+            <label>اللون الثانوي (Accent 2)</label>
+            <input type="color" id="colAccent2" />
+          </div>
         </div>
-        <div class="hint"><span class="ok">✓</span> بعد الحفظ افتح الرئيسية وشوف التغيير مباشرة.</div>
       </section>
 
-      <section class="card" style="padding:16px">
-        <h2 style="margin:0 0 10px">JSON (تصدير / استيراد)</h2>
+      <!-- 2. Home Page -->
+      <section class="card">
+        <h2>الصفحة الرئيسية</h2>
+        <label>العنوان الرئيسي (Hero Title)</label>
+        <input id="heroTitle" />
 
-        <label>البيانات الحالية</label>
-        <textarea id="jsonBox" spellcheck="false"></textarea>
+        <label>الوصف الرئيسي (Hero Sub)</label>
+        <textarea id="heroSub"></textarea>
 
-        <div class="row">
-          <button class="btnA" id="btnExport">تحديث المربع من القيم</button>
-          <button class="btnA" id="btnImport">استيراد من المربع</button>
+        <label>مميزات (KPIs) - كل سطر ميزة: العنوان | الوصف</label>
+        <textarea id="kpis" placeholder="تفاعل حقيقي | مو فيديو جامد&#10;تخصيص فوري | العمر والهدف"></textarea>
+      </section>
+
+      <!-- 3. Problem & Solution -->
+      <section class="card">
+        <h2>المشكلة والحل</h2>
+
+        <div style="background:rgba(255,255,255,0.03); padding:10px; border-radius:8px; margin-bottom:12px;">
+          <label style="margin-top:0">إظهار قسم المشكلة؟</label>
+          <select id="showProblem" style="margin-bottom:10px"><option value="true">نعم</option><option value="false">لا</option></select>
+
+          <label>قائمة المشاكل (سطر لكل نقطة)</label>
+          <textarea id="problemList"></textarea>
         </div>
 
-        <div class="hint">
-          <span class="warn">مهم:</span> هذا JSON هو اللي تقدر تحطه داخل <b>assets/config.js</b> عشان يصير رسمي للزوار.
+        <div style="background:rgba(255,255,255,0.03); padding:10px; border-radius:8px;">
+          <label style="margin-top:0">إظهار قسم الحل؟</label>
+          <select id="showSolution" style="margin-bottom:10px"><option value="true">نعم</option><option value="false">لا</option></select>
+
+          <label>نص الحل المختصر</label>
+          <input id="solutionText" />
+
+          <label>قائمة الحلول (سطر لكل نقطة)</label>
+          <textarea id="solutionList"></textarea>
+        </div>
+      </section>
+
+      <!-- 4. How & Examples -->
+      <section class="card">
+        <h2>كيف يعمل & أمثلة</h2>
+
+        <label>خطوات "كيف يعمل" (سطر لكل خطوة)</label>
+        <textarea id="howList"></textarea>
+
+        <label>ملاحظة "كيف يعمل" (Note)</label>
+        <input id="howNote" />
+
+        <label style="margin-top:20px; border-top:1px solid rgba(255,255,255,0.1); padding-top:10px;">الأمثلة (User | Bot)</label>
+        <div class="hint">اكتب: سؤال المستخدم | رد البوت</div>
+        <textarea id="examples" placeholder="علّمني الفاتحة | تمام بنبدأ آية آية...&#10;ما ودي أذاكر | فاهمك، خلنا نلعب شوي..."></textarea>
+      </section>
+
+      <!-- 5. Advanced / JSON -->
+      <section class="card" style="grid-column: 1 / -1;">
+        <h2>نسخ احتياطي (JSON)</h2>
+        <div class="row">
+          <textarea id="jsonBox" spellcheck="false" style="min-height:80px; font-family:monospace;"></textarea>
+        </div>
+        <div class="row">
+          <button class="btnA" id="btnExport">نسخ JSON الحالي</button>
+          <button class="btnA" id="btnImport">استيراد JSON للموقع</button>
+          <button class="btnA" id="btnReset" style="color:#ff7d7d; border-color:rgba(255,125,125,0.3)">إرجاع ضبط المصنع</button>
         </div>
       </section>
     </div>
@@ -87,58 +146,143 @@
 
     const $ = (id)=>document.getElementById(id);
 
+    // Helpers to split/join textareas
+    const splitLines = (text) => text.split("\n").map(l=>l.trim()).filter(l=>l);
+    const joinLines = (arr) => (arr||[]).join("\n");
+
+    // KPI specific parsing: "Title | Desc"
+    const parseKPIs = (text) => splitLines(text).map(line => {
+      const [t, d] = line.split("|");
+      return { title: (t||"").trim(), desc: (d||"").trim() };
+    });
+    const formatKPIs = (arr) => (arr||[]).map(x => `${x.title} | ${x.desc}`).join("\n");
+
+    // Examples parsing: "User | Bot"
+    const parseExamples = (text) => splitLines(text).map(line => {
+      const [u, b] = line.split("|");
+      return { user: (u||"").trim(), bot: (b||"").trim() };
+    });
+    const formatExamples = (arr) => (arr||[]).map(x => `${x.user} | ${x.bot}`).join("\n");
+
+
     function loadUI(){
       const cfg = getConfig();
+
+      // Brand
+      $("brandName").value = cfg.brandName || "";
+      $("logoChar").value = cfg.logoChar || "";
+      $("brandTag").value = cfg.brandTag || "";
+
+      // Colors
+      $("colBg").value = cfg.colors?.bg || "#000000";
+      $("colCard").value = cfg.colors?.card || "#111111";
+      $("colAccent").value = cfg.colors?.accent || "#3333ff";
+      $("colAccent2").value = cfg.colors?.accent2 || "#33ff33";
+
+      // Home
       $("heroTitle").value = cfg.heroTitle || "";
-      $("heroSub").value   = cfg.heroSub || "";
+      $("heroSub").value = cfg.heroSub || "";
+      $("kpis").value = formatKPIs(cfg.kpis);
+
+      // Problem
       $("showProblem").value = String(cfg.showProblem ?? true);
+      $("problemList").value = joinLines(cfg.problemList);
+
+      // Solution
       $("showSolution").value = String(cfg.showSolution ?? true);
+      $("solutionText").value = cfg.solutionText || "";
+      $("solutionList").value = joinLines(cfg.solutionList);
+
+      // How & Examples
+      $("howList").value = joinLines(cfg.howList);
+      $("howNote").value = cfg.howNote || "";
+      $("examples").value = formatExamples(cfg.examples);
+
+      // JSON Box
       $("jsonBox").value = JSON.stringify(cfg, null, 2);
     }
 
     function readUI(){
+      const old = getConfig(); // Keep existing structure/nav if not edited here
+
       return {
+        ...old,
+        brandName: $("brandName").value.trim(),
+        logoChar: $("logoChar").value.trim(),
+        brandTag: $("brandTag").value.trim(),
+
+        colors: {
+          bg: $("colBg").value,
+          card: $("colCard").value,
+          accent: $("colAccent").value,
+          accent2: $("colAccent2").value
+        },
+
         heroTitle: $("heroTitle").value.trim(),
         heroSub: $("heroSub").value.trim(),
+        kpis: parseKPIs($("kpis").value),
+
         showProblem: $("showProblem").value === "true",
+        problemList: splitLines($("problemList").value),
+
         showSolution: $("showSolution").value === "true",
+        solutionText: $("solutionText").value.trim(),
+        solutionList: splitLines($("solutionList").value),
+
+        howList: splitLines($("howList").value),
+        howNote: $("howNote").value.trim(),
+        examples: parseExamples($("examples").value)
       };
     }
 
-    $("btnSave").addEventListener("click", ()=>{
-      const patch = readUI();
-      setConfig(patch);
-      loadUI();
-      alert("تم الحفظ على جهازك ✅");
-    });
+    function saveAll() {
+      try {
+        const patch = readUI();
+        setConfig(patch);
+        loadUI();
+        // Force simple theme apply for immediate admin feedback (optional)
+        document.documentElement.style.setProperty("--bg", patch.colors.bg);
+        document.documentElement.style.setProperty("--card", patch.colors.card);
+        alert("تم حفظ جميع التغييرات بنجاح ✅");
+      } catch(e) {
+        alert("حدث خطأ أثناء الحفظ: " + e.message);
+      }
+    }
+
+    $("btnSaveTop").addEventListener("click", saveAll);
 
     $("btnReset").addEventListener("click", ()=>{
-      resetConfig();
-      loadUI();
-      alert("تمت العودة للافتراضي ✅");
+      if(confirm("هل أنت متأكد من استعادة الإعدادات الافتراضية؟ ستمسح كل تعديلاتك.")){
+        resetConfig();
+        loadUI();
+        alert("تمت الاستعادة ✅");
+      }
     });
 
-    $("btnPreview").addEventListener("click", ()=>{
-      window.location.href = "./index.html";
+    $("btnPreviewTop").addEventListener("click", ()=>{
+      window.open("./index.html", "_blank");
     });
 
     $("btnExport").addEventListener("click", ()=>{
       $("jsonBox").value = exportConfig();
-      alert("تم تحديث JSON ✅");
+      // Also copy to clipboard
+      navigator.clipboard.writeText($("jsonBox").value).then(()=>{
+        alert("تم نسخ كود JSON ✅");
+      });
     });
 
     $("btnImport").addEventListener("click", ()=>{
       try{
         const obj = JSON.parse($("jsonBox").value);
-        // استيراد كامل
         replaceConfig(obj);
         loadUI();
-        alert("تم الاستيراد ✅ افتح الصفحة الرئيسية وشوف");
+        alert("تم الاستيراد بنجاح ✅");
       }catch(e){
-        alert("JSON غير صالح. تأكد من الأقواس والفواصل.");
+        alert("كود JSON غير صالح. تأكد من الصيغة.");
       }
     });
 
+    // Initial Load
     loadUI();
   </script>
 </body>

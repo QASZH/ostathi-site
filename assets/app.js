@@ -123,10 +123,12 @@ export function setConfig(patch) {
   const current = loadCfg();
   const merged = { ...current, ...patch };
   saveCfg(merged);
+  applyTheme(merged); // Immediate visual feedback if called
 }
 
 export function replaceConfig(cfg) {
   saveCfg(cfg);
+  applyTheme(cfg);
 }
 
 export function resetConfig() {
