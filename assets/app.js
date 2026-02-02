@@ -64,57 +64,6 @@ function renderExamples(cfg){
   });
 }
 
-function initAdmin(cfg){
-  // بسيط: تعديل الأساسيات + استيراد/تصدير + رجوع افتراضي
-  const out = $("adminJson");
-  if(!out) return;
-
-  out.value = JSON.stringify(cfg, null, 2);
-
-  $("btnSave")?.addEventListener("click", ()=>{
-    try{
-      const obj = JSON.parse(out.value);
-      saveCfg(obj);
-      alert("تم الحفظ ✅ افتح الصفحات وشوف التغيير");
-    }catch(e){
-      alert("JSON فيه خطأ: " + e.message);
-    }
-  });
-
-  $("btnReset")?.addEventListener("click", ()=>{
-    if(!confirm("ترجع للافتراضي؟")) return;
-    saveCfg(structuredClone(DEFAULT_CFG));
-    out.value = JSON.stringify(DEFAULT_CFG, null, 2);
-    alert("تم ✅");
-  });
-
-  $("btnExport")?.addEventListener("click", ()=>{
-    const blob = new Blob([out.value], {type:"application/json"});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href=url; a.download="ostathi-config.json";
-    document.body.appendChild(a); a.click(); a.remove();
-    URL.revokeObjectURL(url);
-  });
-
-  $("btnImport")?.addEventListener("click", ()=>{
-    const inp = document.createElement("input");
-    inp.type="file"; inp.accept="application/json";
-    inp.onchange = async ()=>{
-      const f = inp.files?.[0]; if(!f) return;
-      const text = await f.text();
-      try{
-        JSON.parse(text);
-        out.value = text;
-        alert("تم تحميل الملف. اضغط حفظ لتطبيقه ✅");
-      }catch(e){
-        alert("ملف غير صالح: " + e.message);
-      }
-    };
-    inp.click();
-  });
-}
-
 export function getConfig() {
   return loadCfg();
 }
@@ -167,5 +116,4 @@ export function boot(pageName){
     setText("howNote", cfg.howNote);
   }
   if(pageName === "examples") renderExamples(cfg);
-  if(pageName === "admin") initAdmin(cfg);
 }
