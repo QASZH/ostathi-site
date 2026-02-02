@@ -5,6 +5,18 @@ export const DEFAULT_CFG = {
   brandName: "أستاذي",
   brandTag: "معلّم ذكي يتكيّف معك",
   logoChar: "أ",
+  logoSize: 40,
+
+  startPage: {
+    title: "ابدأ التجربة",
+    sub: "هذه صفحة دخول للتجربة. الربط بالذكاء بنسويه في النهاية.",
+    btn: "ابدأ الآن"
+  },
+
+  users: [
+    { id: 1, name: "admin", pass: "admin123", role: "admin" },
+    { id: 2, name: "student", pass: "123", role: "student" }
+  ],
 
   showProblem: true,
   showSolution: true,
@@ -74,7 +86,9 @@ export function loadCfg() {
       ...structuredClone(DEFAULT_CFG),
       ...obj,
       colors: { ...DEFAULT_CFG.colors, ...(obj.colors || {}) },
-      nav: Array.isArray(obj.nav) ? obj.nav : DEFAULT_CFG.nav
+      nav: Array.isArray(obj.nav) ? obj.nav : DEFAULT_CFG.nav,
+      startPage: { ...DEFAULT_CFG.startPage, ...(obj.startPage || {}) },
+      users: Array.isArray(obj.users) ? obj.users : DEFAULT_CFG.users
     };
   } catch {
     return structuredClone(DEFAULT_CFG);

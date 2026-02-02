@@ -8,6 +8,7 @@ function applyTheme(cfg){
   document.documentElement.style.setProperty("--card", cfg.colors.card);
   document.documentElement.style.setProperty("--accent", cfg.colors.accent);
   document.documentElement.style.setProperty("--accent2", cfg.colors.accent2);
+  document.documentElement.style.setProperty("--logo-size", (cfg.logoSize || 40) + "px");
 }
 
 function renderNav(cfg){
@@ -89,6 +90,45 @@ export function exportConfig() {
   return JSON.stringify(loadCfg(), null, 2);
 }
 
+const SESS_KEY = "ostathi:sess:v1";
+
+export function login(user, pass) {
+  const cfg = loadCfg();
+  const u = (cfg.users || []).find(x => x.name === user && x.pass === pass);
+  if (u) {
+    localStorage.setItem(SESS_KEY, JSON.stringify(u));
+    return { success: true, user: u };
+  }
+  return { success: false, msg: "اسم المستخدم أو كلمة المرور غير صحيحة" };
+}
+
+export function logout() {
+  localStorage.removeItem(SESS_KEY);
+  window.location.href = "login.html";
+}
+
+export function getCurrentUser() {
+  try {
+    return JSON.parse(localStorage.getItem(SESS_KEY));
+  } catch {
+    return null;
+  }
+}
+
+export function checkAuth(requiredRole) {
+  const u = getCurrentUser();
+  if (!u) {
+    window.location.href = "login.html";
+    return false;
+  }
+  if (requiredRole && u.role !== requiredRole && u.role !== "admin") {
+    alert("عذرًا، ليس لديك صلاحية للدخول لهذه الصفحة.");
+    window.location.href = "index.html";
+    return false;
+  }
+  return true;
+}
+
 export function boot(pageName){
   const cfg = loadCfg();
   applyTheme(cfg);
@@ -99,11 +139,32 @@ export function boot(pageName){
   setText("brandTag", cfg.brandTag);
   renderNav(cfg);
 
+  const currentUser = getCurrentUser();
+  if (currentUser) {
+    const links = $("navLinks");
+    if(links) {
+      // Add Logout Button
+      const a = document.createElement("a");
+      a.className = "chip";
+      a.style.borderColor = "rgba(255,100,100,0.4)";
+      a.href = "#";
+      a.textContent = `خروج (${currentUser.name})`;
+      a.onclick = (e) => { e.preventDefault(); logout(); };
+      links.appendChild(a);
+    }
+  }
+
   // Page specific
   if(pageName === "home"){
     setText("heroTitle", cfg.heroTitle);
     setText("heroSub", cfg.heroSub);
     renderKpis(cfg);
+  }
+
+  if(pageName === "start"){
+    setText("startTitle", cfg.startPage?.title);
+    setText("startSub", cfg.startPage?.sub);
+    setText("startBtn", cfg.startPage?.btn);
   }
 
   if(pageName === "problem") setList("problemList", cfg.problemList);
