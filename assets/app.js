@@ -14,6 +14,9 @@ function renderNav(cfg){
   const links = $("navLinks");
   links.innerHTML = "";
   cfg.nav.forEach(x=>{
+    if(x.href.includes("problem") && cfg.showProblem === false) return;
+    if(x.href.includes("solution") && cfg.showSolution === false) return;
+
     const a = document.createElement("a");
     a.className = "chip";
     a.href = x.href;
@@ -120,6 +123,10 @@ export function setConfig(patch) {
   const current = loadCfg();
   const merged = { ...current, ...patch };
   saveCfg(merged);
+}
+
+export function replaceConfig(cfg) {
+  saveCfg(cfg);
 }
 
 export function resetConfig() {

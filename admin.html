@@ -83,7 +83,7 @@
   </main>
 
   <script type="module">
-    import { getConfig, setConfig, resetConfig, exportConfig } from "./assets/app.js";
+    import { getConfig, setConfig, replaceConfig, resetConfig, exportConfig } from "./assets/app.js";
 
     const $ = (id)=>document.getElementById(id);
 
@@ -131,7 +131,7 @@
       try{
         const obj = JSON.parse($("jsonBox").value);
         // استيراد كامل
-        localStorage.setItem("ostathi_config", JSON.stringify(obj));
+        replaceConfig(obj);
         loadUI();
         alert("تم الاستيراد ✅ افتح الصفحة الرئيسية وشوف");
       }catch(e){
