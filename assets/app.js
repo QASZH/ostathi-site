@@ -12,6 +12,7 @@ function applyTheme(cfg){
 
 function renderNav(cfg){
   const links = $("navLinks");
+  if(!links) return;
   links.innerHTML = "";
   cfg.nav.forEach(x=>{
     if(x.href.includes("problem") && cfg.showProblem === false) return;
