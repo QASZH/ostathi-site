@@ -4,6 +4,7 @@ import { loadCfg, saveCfg, DEFAULT_CFG } from "./config.js";
 const $ = (id) => document.getElementById(id);
 
 function applyTheme(cfg){
+  if (!cfg || !cfg.colors) return;
   document.documentElement.style.setProperty("--bg", cfg.colors.bg);
   document.documentElement.style.setProperty("--card", cfg.colors.card);
   document.documentElement.style.setProperty("--accent", cfg.colors.accent);
@@ -15,7 +16,7 @@ function renderNav(cfg){
   const links = $("navLinks");
   if(!links) return;
   links.innerHTML = "";
-  cfg.nav.forEach(x=>{
+  (cfg.nav || []).forEach(x=>{
     if(x.href.includes("problem") && cfg.showProblem === false) return;
     if(x.href.includes("solution") && cfg.showSolution === false) return;
 

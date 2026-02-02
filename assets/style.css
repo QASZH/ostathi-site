@@ -31,7 +31,7 @@ a{color:inherit; text-decoration:none}
 .logo{
   width:var(--logo-size); height:var(--logo-size); border-radius:16px;
   background:linear-gradient(135deg, var(--accent), var(--accent2));
-  display:grid; place-items:center; color:#061018; font-weight:1000;
+  display:grid; place-items:center; color:#061018; font-weight:900;
   font-size: calc(var(--logo-size) * 0.6);
   box-shadow:0 12px 36px rgba(59,130,246,.20);
 }
