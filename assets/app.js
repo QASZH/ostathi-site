@@ -112,6 +112,24 @@ function initAdmin(cfg){
   });
 }
 
+export function getConfig() {
+  return loadCfg();
+}
+
+export function setConfig(patch) {
+  const current = loadCfg();
+  const merged = { ...current, ...patch };
+  saveCfg(merged);
+}
+
+export function resetConfig() {
+  saveCfg(structuredClone(DEFAULT_CFG));
+}
+
+export function exportConfig() {
+  return JSON.stringify(loadCfg(), null, 2);
+}
+
 export function boot(pageName){
   const cfg = loadCfg();
   applyTheme(cfg);

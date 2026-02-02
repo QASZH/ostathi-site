@@ -89,21 +89,19 @@
 
     function loadUI(){
       const cfg = getConfig();
-      $("heroTitle").value = cfg.home.heroTitle || "";
-      $("heroSub").value   = cfg.home.heroSub || "";
-      $("showProblem").value = String(cfg.home.showProblem ?? true);
-      $("showSolution").value = String(cfg.home.showSolution ?? true);
+      $("heroTitle").value = cfg.heroTitle || "";
+      $("heroSub").value   = cfg.heroSub || "";
+      $("showProblem").value = String(cfg.showProblem ?? true);
+      $("showSolution").value = String(cfg.showSolution ?? true);
       $("jsonBox").value = JSON.stringify(cfg, null, 2);
     }
 
     function readUI(){
       return {
-        home:{
-          heroTitle: $("heroTitle").value.trim(),
-          heroSub: $("heroSub").value.trim(),
-          showProblem: $("showProblem").value === "true",
-          showSolution: $("showSolution").value === "true",
-        }
+        heroTitle: $("heroTitle").value.trim(),
+        heroSub: $("heroSub").value.trim(),
+        showProblem: $("showProblem").value === "true",
+        showSolution: $("showSolution").value === "true",
       };
     }
 
