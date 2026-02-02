@@ -1,0 +1,35 @@
+{
+  "site": {
+    "name": "أستاذي",
+    "tagline": "معلّم ذكي يتكيف معك",
+    "logoChar": "أ"
+  },
+  "theme": {
+    "bg": "#070b12",
+    "card": "rgba(255,255,255,0.06)",
+    "text": "#e9efff",
+    "muted": "rgba(233,239,255,0.70)",
+    "accent": "#39d98a"
+  },
+  "nav": {
+    "links": [
+      { "label": "المشكلة", "href": "problem.html" },
+      { "label": "الحل", "href": "solution.html" },
+      { "label": "كيف يعمل", "href": "how.html" },
+      { "label": "أمثلة", "href": "examples.html" },
+      { "label": "ابدأ", "href": "start.html" }
+    ]
+  },
+  "home": {
+    "heroTitle": "أستاذي... معلمك الذكي اللي يفهمك",
+    "heroSub": "تعلّم، تسمّع، تصحيح أخطاء، وتحفيز—بنبذة تربوية ذكية فيها متعة (بدون ما يصير مهرّج)."
+  },
+  "flags": {
+    "showProblem": true,
+    "showSolution": true,
+    "showHow": true,
+    "showExamples": true,
+    "showStart": true
+  }
+}
+
