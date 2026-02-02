@@ -1,5 +1,0 @@
-127.0.0.1 - - [02/Feb/2026 01:25:17] "GET /admin.html HTTP/1.1" 200 -
-127.0.0.1 - - [02/Feb/2026 01:25:17] "GET /assets/style.css HTTP/1.1" 200 -
-127.0.0.1 - - [02/Feb/2026 01:25:18] "GET /assets/app.js HTTP/1.1" 200 -
-127.0.0.1 - - [02/Feb/2026 01:25:18] "GET /assets/config.js HTTP/1.1" 200 -
-127.0.0.1 - - [02/Feb/2026 01:25:19] "GET /index.html HTTP/1.1" 200 -
