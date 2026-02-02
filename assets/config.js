@@ -6,9 +6,6 @@ export const DEFAULT_CFG = {
   brandTag: "معلّم ذكي يتكيّف معك",
   logoChar: "أ",
 
-  showProblem: true,
-  showSolution: true,
-
   colors: {
     bg: "#070b12",
     card: "#0c1320",
