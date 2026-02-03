@@ -90,6 +90,9 @@
         <label>وصف الرئيسية (Hero Sub)</label>
         <textarea id="heroSub" style="min-height:60px"></textarea>
 
+        <label>المؤشرات (KPIs) (العنوان | الوصف)</label>
+        <textarea id="kpis" placeholder="عدد الطلاب | +500 طالب&#10;سنوات الخبرة | 10 سنوات"></textarea>
+
         <div class="hr" style="border-top:1px solid rgba(255,255,255,0.1); margin:10px 0;"></div>
 
         <label>عنوان صفحة ابدأ (Start Title)</label>
@@ -212,6 +215,9 @@
 
     let currentUsers = [];
 
+    // Simple HTML escape to prevent XSS in admin table
+    const esc = (s) => String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
     function renderUsers(users){
       currentUsers = users || [];
       const tb = $("usersTable");
@@ -220,9 +226,9 @@
         const tr = document.createElement("tr");
         tr.style.borderBottom = "1px solid rgba(255,255,255,0.05)";
         tr.innerHTML = `
-          <td style="padding:8px">${u.name}</td>
-          <td style="padding:8px">${u.pass}</td>
-          <td style="padding:8px"><span class="chip" style="font-size:12px; padding:4px 8px">${u.role}</span></td>
+          <td style="padding:8px">${esc(u.name)}</td>
+          <td style="padding:8px">${esc(u.pass)}</td>
+          <td style="padding:8px"><span class="chip" style="font-size:12px; padding:4px 8px">${esc(u.role)}</span></td>
           <td style="padding:8px"><button class="btnA" style="padding:4px 10px; font-size:12px; color:#ff7d7d; border-color:rgba(255,0,0,0.3)" data-idx="${i}">حذف</button></td>
         `;
         tb.appendChild(tr);
