@@ -172,6 +172,19 @@ main {
   color: white;
 }
 
+/* Category Filters */
+#category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+#category-filters .btn {
+  width: auto;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
 /* Forms */
 .form-group {
   margin-bottom: 1.5rem;
