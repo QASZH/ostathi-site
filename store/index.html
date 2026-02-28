@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>المتجر الرقمي | الرئيسية</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <header>
+    <div class="container nav-content">
+      <div class="logo">المتجر الرقمي</div>
+      <nav class="nav-links">
+        <a href="index.html">الرئيسية</a>
+        <a href="products.html">المنتجات</a>
+      </nav>
+      <div class="nav-icons">
+        <a href="cart.html" title="سلة المشتريات">
+          🛒 (<span id="cart-count">0</span>)
+        </a>
+        <div id="auth-links" class="d-flex align-center gap-1"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="text-center mb-2">
+      <h1>مرحباً بك في المتجر الرقمي الأول</h1>
+      <p>اكتشف مجموعتنا الواسعة من الكتب الإلكترونية، الدورات التعليمية، والبرمجيات.</p>
+    </section>
+
+    <section>
+      <h2>تصفح الأقسام</h2>
+      <div class="grid" id="categories-grid">
+        <!-- Categories will be rendered here via JS -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 المتجر الرقمي. جميع الحقوق محفوظة.</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { categories } from './js/data.js';
+    import { updateAuthUI } from './js/auth.js';
+    import { updateCartCountUI } from './js/cart.js';
+
+    // Initialize UI
+    document.addEventListener('DOMContentLoaded', () => {
+      updateAuthUI();
+      updateCartCountUI();
+      renderCategories();
+    });
+
+    function renderCategories() {
+      const grid = document.getElementById('categories-grid');
+      grid.innerHTML = categories.map(cat => `
+        <div class="card text-center">
+          <h3>${cat.name}</h3>
+          <p>${cat.description}</p>
+          <a href="products.html?category=${cat.id}" class="btn btn-outline mt-1">عرض المنتجات</a>
+        </div>
+      `).join('');
+    }
+  </script>
+</body>
+</html>

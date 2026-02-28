@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>المتجر الرقمي | إنشاء حساب جديد</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    .auth-container {
+      max-width: 400px;
+      margin: 4rem auto;
+      background: var(--bg-color);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-content">
+      <div class="logo">المتجر الرقمي</div>
+      <nav class="nav-links">
+        <a href="index.html">الرئيسية</a>
+        <a href="products.html">المنتجات</a>
+      </nav>
+      <div class="nav-icons">
+        <a href="cart.html" title="سلة المشتريات">
+          🛒 (<span id="cart-count">0</span>)
+        </a>
+        <div id="auth-links" class="d-flex align-center gap-1"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="auth-container">
+      <h2 class="text-center mb-2">إنشاء حساب جديد</h2>
+
+      <div id="alert-box" class="alert"></div>
+
+      <form id="register-form">
+        <div class="form-group">
+          <label for="name">الاسم الكامل</label>
+          <input type="text" id="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">البريد الإلكتروني</label>
+          <input type="email" id="email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">كلمة المرور</label>
+          <input type="password" id="password" required minlength="6">
+        </div>
+        <button type="submit" class="btn btn-primary w-100">تسجيل الحساب</button>
+      </form>
+
+      <p class="text-center mt-2">
+        لديك حساب بالفعل؟ <a href="login.html" style="color: var(--primary-color);">تسجيل الدخول</a>
+      </p>
+    </div>
+  </main>
+
+  <script type="module">
+    import { registerUser, getCurrentUser, updateAuthUI } from './js/auth.js';
+    import { updateCartCountUI } from './js/cart.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // If already logged in, redirect to home
+      if (getCurrentUser()) {
+        window.location.href = 'index.html';
+      }
+
+      updateAuthUI();
+      updateCartCountUI();
+
+      const form = document.getElementById('register-form');
+      const alertBox = document.getElementById('alert-box');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        const result = registerUser(email, password, name);
+
+        if (result.success) {
+          alertBox.className = 'alert alert-success';
+          alertBox.style.display = 'block';
+          alertBox.textContent = result.message;
+
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 1500);
+        } else {
+          alertBox.className = 'alert alert-danger';
+          alertBox.style.display = 'block';
+          alertBox.textContent = result.message;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
