@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>المتجر الرقمي | تفاصيل المنتج</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    .product-detail {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      background: var(--bg-color);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    @media (max-width: 768px) {
+      .product-detail { grid-template-columns: 1fr; }
+    }
+    .product-image img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .product-info h1 {
+      margin-bottom: 1rem;
+    }
+    .product-price {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin: 1.5rem 0;
+    }
+    .features-list {
+      margin: 1.5rem 0;
+      padding-right: 1.5rem;
+      list-style-type: disc;
+    }
+    .features-list li {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-content">
+      <div class="logo">المتجر الرقمي</div>
+      <nav class="nav-links">
+        <a href="index.html">الرئيسية</a>
+        <a href="products.html">المنتجات</a>
+      </nav>
+      <div class="nav-icons">
+        <a href="cart.html" title="سلة المشتريات">
+          🛒 (<span id="cart-count">0</span>)
+        </a>
+        <div id="auth-links" class="d-flex align-center gap-1"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" id="product-container">
+    <!-- Product details will be rendered here via JS -->
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 المتجر الرقمي. جميع الحقوق محفوظة.</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { getProductById } from './js/data.js';
+    import { updateAuthUI } from './js/auth.js';
+    import { addToCart, updateCartCountUI } from './js/cart.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      updateAuthUI();
+      updateCartCountUI();
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get('id');
+
+      renderProduct(productId);
+    });
+
+    function renderProduct(id) {
+      const container = document.getElementById('product-container');
+      const product = getProductById(id);
+
+      if (!product) {
+        container.innerHTML = `
+          <div class="text-center mt-2">
+            <h2>المنتج غير موجود</h2>
+            <a href="products.html" class="btn btn-primary mt-1">العودة للمنتجات</a>
+          </div>
+        `;
+        return;
+      }
+
+      document.title = `المتجر الرقمي | ${product.name}`;
+
+      container.innerHTML = `
+        <div class="product-detail">
+          <div class="product-image">
+            <img src="${product.image}" alt="${product.name}">
+          </div>
+          <div class="product-info">
+            <h1>${product.name}</h1>
+            <p style="font-size: 1.1rem; color: #4b5563;">${product.description}</p>
+
+            <ul class="features-list">
+              <li>تحميل فوري بعد الدفع</li>
+              <li>دعم فني وتحديثات مستمرة</li>
+              <li>ضمان استرجاع الأموال خلال 14 يوماً</li>
+            </ul>
+
+            <div class="product-price">${product.price.toFixed(2)} ريال</div>
+
+            <button class="btn btn-primary w-100" id="add-to-cart-btn" style="font-size: 1.2rem; padding: 1rem;">
+              إضافة إلى السلة
+            </button>
+            <a href="products.html" class="btn btn-outline w-100 mt-1" style="display:block; text-align:center;">
+              العودة للمنتجات
+            </a>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('add-to-cart-btn').addEventListener('click', () => {
+        addToCart(product.id);
+      });
+    }
+  </script>
+</body>
+</html>

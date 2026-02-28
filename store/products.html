@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>المتجر الرقمي | المنتجات</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <header>
+    <div class="container nav-content">
+      <div class="logo">المتجر الرقمي</div>
+      <nav class="nav-links">
+        <a href="index.html">الرئيسية</a>
+        <a href="products.html">المنتجات</a>
+      </nav>
+      <div class="nav-icons">
+        <a href="cart.html" title="سلة المشتريات">
+          🛒 (<span id="cart-count">0</span>)
+        </a>
+        <div id="auth-links" class="d-flex align-center gap-1"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="mb-2" id="page-title">جميع المنتجات</h1>
+
+    <!-- Filter categories -->
+    <div class="mb-2 d-flex gap-1" id="category-filters">
+      <!-- Filters will be rendered here via JS -->
+    </div>
+
+    <div class="grid" id="products-grid">
+      <!-- Products will be rendered here via JS -->
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 المتجر الرقمي. جميع الحقوق محفوظة.</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { products, categories, getProductsByCategory } from './js/data.js';
+    import { updateAuthUI } from './js/auth.js';
+    import { addToCart, updateCartCountUI } from './js/cart.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      updateAuthUI();
+      updateCartCountUI();
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const categoryId = urlParams.get('category');
+
+      renderFilters(categoryId);
+      renderProducts(categoryId);
+    });
+
+    function renderFilters(activeId) {
+      const filtersDiv = document.getElementById('category-filters');
+      let html = `<a href="products.html" class="btn ${!activeId ? 'btn-primary' : 'btn-outline'}">الكل</a>`;
+
+      categories.forEach(cat => {
+        const isActive = activeId === cat.id;
+        html += `<a href="products.html?category=${cat.id}" class="btn ${isActive ? 'btn-primary' : 'btn-outline'}">${cat.name}</a>`;
+      });
+
+      filtersDiv.innerHTML = html;
+
+      // Update page title if filtered
+      if (activeId) {
+        const cat = categories.find(c => c.id === activeId);
+        if (cat) document.getElementById('page-title').textContent = cat.name;
+      }
+    }
+
+    function renderProducts(categoryId) {
+      const grid = document.getElementById('products-grid');
+      const filteredProducts = getProductsByCategory(categoryId);
+
+      if (filteredProducts.length === 0) {
+        grid.innerHTML = '<p class="text-center">عذراً، لا توجد منتجات في هذا القسم.</p>';
+        return;
+      }
+
+      grid.innerHTML = filteredProducts.map(product => `
+        <div class="card">
+          <img src="${product.image}" alt="${product.name}" style="width:100%; border-radius:4px; margin-bottom:1rem;">
+          <h3>${product.name}</h3>
+          <p>${product.description}</p>
+          <span class="price">${product.price.toFixed(2)} ريال</span>
+          <button class="btn btn-primary w-100 add-to-cart-btn" data-id="${product.id}">إضافة للسلة</button>
+        </div>
+      `).join('');
+
+      // Add event listeners to buttons
+      document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const id = e.target.getAttribute('data-id');
+          addToCart(id);
+        });
+      });
+    }
+
+    // Expose addToCart globally for button clicks
+    window.addToCart = addToCart;
+  </script>
+</body>
+</html>

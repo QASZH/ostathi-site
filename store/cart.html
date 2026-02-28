@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>المتجر الرقمي | سلة المشتريات</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    .cart-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 768px) {
+      .cart-container { grid-template-columns: 1fr; }
+    }
+    .qty-input {
+      width: 60px;
+      padding: 0.25rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-content">
+      <div class="logo">المتجر الرقمي</div>
+      <nav class="nav-links">
+        <a href="index.html">الرئيسية</a>
+        <a href="products.html">المنتجات</a>
+      </nav>
+      <div class="nav-icons">
+        <a href="cart.html" title="سلة المشتريات">
+          🛒 (<span id="cart-count">0</span>)
+        </a>
+        <div id="auth-links" class="d-flex align-center gap-1"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="mb-2">سلة المشتريات</h1>
+
+    <div class="cart-container" id="cart-view">
+      <!-- Cart items and summary will be rendered here via JS -->
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 المتجر الرقمي. جميع الحقوق محفوظة.</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { getCart, removeFromCart, updateQuantity, getCartTotal, updateCartCountUI } from './js/cart.js';
+    import { getProductById } from './js/data.js';
+    import { updateAuthUI, requireLogin } from './js/auth.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Must be logged in to view cart effectively, though let's just show empty state if not
+      updateAuthUI();
+      updateCartCountUI();
+      renderCart();
+    });
+
+    function renderCart() {
+      const cartContainer = document.getElementById('cart-view');
+      const cart = getCart();
+
+      if (cart.length === 0) {
+        cartContainer.innerHTML = `
+          <div style="grid-column: 1 / -1;" class="text-center mt-2">
+            <h2>سلة المشتريات فارغة</h2>
+            <p class="mb-2">تصفح منتجاتنا وأضف ما يعجبك إلى السلة.</p>
+            <a href="products.html" class="btn btn-primary">تصفح المنتجات</a>
+          </div>
+        `;
+        return;
+      }
+
+      let itemsHtml = '<div class="card"><h3>المنتجات</h3>';
+
+      cart.forEach(item => {
+        const product = getProductById(item.productId);
+        if (!product) return; // Skip if product deleted from data
+
+        itemsHtml += `
+          <div class="cart-item">
+            <div class="cart-item-details">
+              <h4>${product.name}</h4>
+              <p>${product.price.toFixed(2)} ريال</p>
+            </div>
+            <div class="d-flex align-center gap-1">
+              <input type="number" class="qty-input" value="${item.quantity}" min="1" onchange="window.updateItemQty('${product.id}', this.value)">
+              <button class="btn btn-danger" style="padding: 0.25rem 0.5rem;" onclick="window.removeItem('${product.id}')">حذف</button>
+            </div>
+          </div>
+        `;
+      });
+      itemsHtml += '</div>';
+
+      const total = getCartTotal().toFixed(2);
+      const summaryHtml = `
+        <div class="checkout-summary card">
+          <h3>ملخص الطلب</h3>
+          <div class="summary-row">
+            <span>المجموع الفرعي:</span>
+            <span>${total} ريال</span>
+          </div>
+          <div class="summary-total summary-row">
+            <span>الإجمالي الكلي:</span>
+            <span>${total} ريال</span>
+          </div>
+          <a href="checkout.html" class="btn btn-primary mt-2">إتمام الطلب والدفع</a>
+        </div>
+      `;
+
+      cartContainer.innerHTML = itemsHtml + summaryHtml;
+    }
+
+    // Expose to window for inline onclick attributes
+    window.removeItem = (productId) => {
+      removeFromCart(productId);
+      renderCart();
+    };
+
+    window.updateItemQty = (productId, qty) => {
+      updateQuantity(productId, parseInt(qty));
+      renderCart();
+    };
+  </script>
+</body>
+</html>
