@@ -14,24 +14,19 @@
   </div></div>
 
   <main class="wrap">
-    <section class="card">
-      <h1>ابدأ التجربة</h1>
-      <p class="sub">هذه صفحة دخول للتجربة. الربط بالذكاء بنسويه في النهاية.</p>
+    <section class="card" style="text-align:center; padding:40px 20px;">
+      <h1 id="startTitle"></h1>
+      <p class="sub" id="startSub" style="max-width:600px; margin:0 auto 30px;"></p>
 
-      <div class="demo">
-        <div class="small">حالياً:</div>
-        <ul>
-          <li>اختيار فئة/هدف (لاحقًا)</li>
-          <li>زر يبدأ جلسة (لاحقًا)</li>
-        </ul>
-        <div class="hr"></div>
-        <button class="btn btn2" onclick="alert('جاهز. الربط بالذكاء نخليه آخر مرحلة ✅')">ابدأ الآن</button>
-      </div>
+      <a href="setup.html" class="btn btn2" id="startBtn" style="font-size:18px; padding:14px 32px;"></a>
     </section>
   </main>
 
   <script type="module">
-    import { boot } from "./assets/app.js";
+    import { boot, checkAuth } from "./assets/app.js";
+    // Optional: Require login to start? Let's leave it open or check 'student'
+    // checkAuth("student");
+
     boot("start");
   </script>
 </body>

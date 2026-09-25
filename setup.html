@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>أستاذي | إعداد الجلسة</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    .option-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:12px; margin-top:16px;}
+    .opt-card{
+      background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
+      border-radius:16px; padding:20px; text-align:center; cursor:pointer;
+      transition:all 0.2s ease;
+    }
+    .opt-card:hover{background:rgba(59,130,246,0.1); border-color:var(--accent);}
+    .opt-card.active{background:rgba(59,130,246,0.2); border-color:var(--accent); box-shadow:0 0 0 2px var(--accent);}
+    .opt-icon{font-size:32px; margin-bottom:10px; display:block;}
+  </style>
+</head>
+<body>
+  <div class="nav"><div class="navin">
+    <div class="brand"><div class="logo" id="logoChar">أ</div><div><div id="brandName">أستاذي</div><div class="small" id="brandTag"></div></div></div>
+    <div class="links" id="navLinks"></div>
+  </div></div>
+
+  <main class="wrap">
+    <section class="card" style="max-width:800px; margin:0 auto;">
+      <h1>إعداد الجلسة</h1>
+      <p class="sub">اختر المادة والهدف لنبدأ...</p>
+
+      <div class="hr"></div>
+
+      <label style="display:block; margin:20px 0 10px; font-weight:bold;">1. اختر المادة</label>
+      <div class="option-grid" id="subjects">
+        <div class="opt-card" onclick="select(this, 'sub')"><span class="opt-icon">📖</span>القرآن الكريم</div>
+        <div class="opt-card" onclick="select(this, 'sub')"><span class="opt-icon">📐</span>الرياضيات</div>
+        <div class="opt-card" onclick="select(this, 'sub')"><span class="opt-icon">🔬</span>العلوم</div>
+        <div class="opt-card" onclick="select(this, 'sub')"><span class="opt-icon">🇬🇧</span>اللغة الإنجليزية</div>
+      </div>
+
+      <label style="display:block; margin:30px 0 10px; font-weight:bold;">2. ما هو هدفك؟</label>
+      <div class="option-grid" id="goals">
+        <div class="opt-card" onclick="select(this, 'goal')"><span class="opt-icon">🎓</span>تعلّم جديد</div>
+        <div class="opt-card" onclick="select(this, 'goal')"><span class="opt-icon">📝</span>حل واجب</div>
+        <div class="opt-card" onclick="select(this, 'goal')"><span class="opt-icon">🧠</span>مراجعة/تسميع</div>
+        <div class="opt-card" onclick="select(this, 'goal')"><span class="opt-icon">⚡</span>اختبار سريع</div>
+      </div>
+
+      <div class="hr" style="margin-top:40px;"></div>
+
+      <div style="text-align:center;">
+        <button class="btn btn2" id="startSessionBtn" style="width:100%; max-width:300px; justify-content:center; padding:16px; font-size:18px;" disabled>بدء الجلسة</button>
+      </div>
+    </section>
+  </main>
+
+  <script type="module">
+    import { boot, checkAuth } from "./assets/app.js";
+    // checkAuth("student");
+    boot("setup");
+
+    window.selData = {sub:null, goal:null};
+
+    window.select = function(el, type){
+      // Clear siblings
+      el.parentNode.querySelectorAll(".opt-card").forEach(c=>c.classList.remove("active"));
+      // Set active
+      el.classList.add("active");
+      window.selData[type] = el.textContent;
+
+      const btn = document.getElementById("startSessionBtn");
+      if(window.selData.sub && window.selData.goal){
+        btn.disabled = false;
+        btn.style.opacity = "1";
+      } else {
+        btn.disabled = true;
+        btn.style.opacity = "0.5";
+      }
+    };
+
+    document.getElementById("startSessionBtn").addEventListener("click", ()=>{
+        const params = new URLSearchParams({
+            s: window.selData.sub,
+            g: window.selData.goal
+        });
+        window.location.href = "session.html?" + params.toString();
+    });
+  </script>
+</body>
+</html>

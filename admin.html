@@ -1,80 +1,402 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!doctype html>
+<html lang="ar" dir="rtl">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.3">
-  <style type="text/css">
-    span.s1 {font-kerning: none}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>لوحة التحكم | أستاذي</title>
+  <link rel="stylesheet" href="./assets/style.css" />
+  <style>
+    .adminWrap{max-width:1100px;margin:24px auto;padding:16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(340px, 1fr));gap:16px}
+    label{display:block;margin:12px 0 6px;color:#cfd7e6;font-size:14px;font-weight:bold}
+    input, textarea, select{
+      width:100%; padding:10px 12px; border-radius:10px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.25); color:#e9efff;
+      outline:none; font-family:inherit;
+    }
+    input[type="color"] { padding: 4px; height: 42px; cursor: pointer; }
+    textarea{min-height:100px; line-height:1.6; font-size:14px}
+    .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .btnA{cursor:pointer;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.25);color:#e9efff;flex:1;text-align:center}
+    .btnP{cursor:pointer;padding:10px 14px;border-radius:12px;border:1px solid rgba(85,255,200,.35);background:rgba(0,255,200,.12);color:#e9efff;flex:2;text-align:center;font-weight:bold}
+    .hint{opacity:.75;font-size:13px;margin-top:8px}
+    .ok{color:#7dffb4}
+    .warn{color:#ffd27d}
+    section.card { height: 100%; }
+    h2 { margin: 0 0 16px; font-size: 1.4em; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; }
   </style>
 </head>
+
 <body>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b>&lt;!doctype html&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b>&lt;html lang="ar" dir="rtl"&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b>&lt;head&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">  </span>&lt;meta charset="utf-8" /&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width,initial-scale=1" /&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">  </span>&lt;title&gt;لوحة التحكم - أستاذي&lt;/title&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">  </span>&lt;link rel="stylesheet" href="./assets/style.css" /&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b>&lt;/head&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b>&lt;body&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">  </span>&lt;div class="nav"&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>&lt;div class="navin"&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">      </span>&lt;div class="brand"&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">        </span>&lt;div class="logo" id="logoChar"&gt;أ&lt;/div&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">        </span>&lt;div&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">          </span>&lt;div id="brandName" style="font-weight:800"&gt;أستاذي&lt;/div&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">          </span>&lt;div class="small" id="brandTag"&gt;معلّم ذكي يتكيف معك&lt;/div&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">        </span>&lt;/div&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">      </span>&lt;/div&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">      </span>&lt;div class="links"&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">        </span>&lt;a class="pill" href="./index.html"&gt;الرئيسية&lt;/a&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">      </span>&lt;/div&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>&lt;/div&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">  </span>&lt;/div&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000; min-height: 32.0px"><span class="s1"><b></b></span><br></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">  </span>&lt;main class="wrap"&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>&lt;section class="card"&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">      </span>&lt;h1 style="font-size:34px;margin-bottom:8px;"&gt;لوحة التحكم&lt;/h1&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">      </span>&lt;p class="sub"&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">        </span>عدّل JSON ثم اضغط “حفظ على جهازي”. التعديل يُطبّق فورًا في موقعك على نفس الجهاز.</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">      </span>&lt;/p&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>&lt;/section&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000; min-height: 32.0px"><span class="s1"><b></b></span><br></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>&lt;section class="card"&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">      </span>&lt;div class="grid2"&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">        </span>&lt;div&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">          </span>&lt;div style="font-weight:800;margin-bottom:10px;"&gt;JSON (تعديل مباشر)&lt;/div&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">          </span>&lt;textarea id="adminJson" spellcheck="false"&gt;&lt;/textarea&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">          </span>&lt;div class="links" style="margin-top:12px;"&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">            </span>&lt;button class="btn primary" id="btnApply"&gt;حفظ على جهازي&lt;/button&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">            </span>&lt;button class="btn" id="btnReset"&gt;رجوع افتراضي&lt;/button&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">            </span>&lt;button class="btn" id="btnOpenHome"&gt;فتح الرئيسية&lt;/button&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">          </span>&lt;/div&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">          </span>&lt;div class="small" style="margin-top:10px;"&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">            </span>ملاحظة: لتغيير “الافتراضي للجميع” عدّل ملف &lt;b&gt;assets/config.json&lt;/b&gt; داخل الريبو ثم Commit + Push.</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">          </span>&lt;/div&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">        </span>&lt;/div&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000; min-height: 32.0px"><span class="s1"><b></b></span><br></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">        </span>&lt;div&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">          </span>&lt;div style="font-weight:800;margin-bottom:10px;"&gt;ملاحظات سريعة&lt;/div&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">          </span>&lt;div class="small"&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">            </span>- هذا النظام ما يحتاج قواعد بيانات الآن (MVP).&lt;br&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">            </span>- لو تبغى “حفظ للجميع من اللوحة” نحتاج Backend (Firebase مثلًا).&lt;br&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">            </span>- حاليًا: اللوحة ممتازة للتجربة والتعديل السريع.</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">          </span>&lt;/div&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">        </span>&lt;/div&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">      </span>&lt;/div&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>&lt;/section&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">  </span>&lt;/main&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000; min-height: 32.0px"><span class="s1"><b></b></span><br></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">  </span>&lt;script type="module"&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>import { boot } from "./assets/app.js";</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>boot("admin");</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">  </span>&lt;/script&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b>&lt;/body&gt;</b></span></h1>
-<h1 dir="rtl" style="margin: 0.0px 0.0px 6.0px 0.0px; font: 24.0px 'Geeza Pro'; -webkit-text-stroke: #000000"><span class="s1"><b>&lt;/html&gt;</b></span></h1>
+  <main class="adminWrap">
+    <header style="margin-bottom:24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="margin:0">لوحة التحكم</h1>
+        <div class="hint">عدّل المحتوى، الألوان، والإعدادات لكل الموقع.</div>
+      </div>
+      <div class="row" style="margin:0; width:auto;">
+        <button class="btnP" id="btnSaveTop">حفظ التغييرات</button>
+        <button class="btnA" id="btnPreviewTop">معاينة الموقع</button>
+      </div>
+    </header>
+
+    <div class="grid">
+      <!-- 1. Brand & Colors -->
+      <section class="card">
+        <h2>الهوية والألوان</h2>
+        <label>اسم الموقع (Brand Name)</label>
+        <input id="brandName" />
+
+        <div class="row" style="margin-top:0">
+            <div style="flex:1">
+                <label>الشعار (Logo Char)</label>
+                <input id="logoChar" style="text-align:center;" />
+            </div>
+            <div style="flex:1">
+                <label>حجم الشعار (px)</label>
+                <input id="logoSize" type="number" />
+            </div>
+        </div>
+
+        <label>الوصف القصير (Tagline)</label>
+        <input id="brandTag" />
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;">
+          <div>
+            <label>لون الخلفية</label>
+            <input type="color" id="colBg" />
+          </div>
+          <div>
+            <label>لون البطاقات</label>
+            <input type="color" id="colCard" />
+          </div>
+          <div>
+            <label>اللون الأساسي (Accent)</label>
+            <input type="color" id="colAccent" />
+          </div>
+          <div>
+            <label>اللون الثانوي (Accent 2)</label>
+            <input type="color" id="colAccent2" />
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Home Page & Start Page -->
+      <section class="card">
+        <h2>الصفحة الرئيسية & ابدأ</h2>
+        <label>عنوان الرئيسية (Hero Title)</label>
+        <input id="heroTitle" />
+        <label>وصف الرئيسية (Hero Sub)</label>
+        <textarea id="heroSub" style="min-height:60px"></textarea>
+
+        <label>المؤشرات (KPIs) (العنوان | الوصف)</label>
+        <textarea id="kpis" placeholder="عدد الطلاب | +500 طالب&#10;سنوات الخبرة | 10 سنوات"></textarea>
+
+        <div class="hr" style="border-top:1px solid rgba(255,255,255,0.1); margin:10px 0;"></div>
+
+        <label>عنوان صفحة ابدأ (Start Title)</label>
+        <input id="startTitle" />
+        <label>وصف صفحة ابدأ (Start Sub)</label>
+        <textarea id="startSub" style="min-height:60px"></textarea>
+        <label>نص زر البدء</label>
+        <input id="startBtn" />
+      </section>
+
+      <!-- 3. Problem & Solution -->
+      <section class="card">
+        <h2>المشكلة والحل</h2>
+
+        <div style="background:rgba(255,255,255,0.03); padding:10px; border-radius:8px; margin-bottom:12px;">
+          <label style="margin-top:0">إظهار قسم المشكلة؟</label>
+          <select id="showProblem" style="margin-bottom:10px"><option value="true">نعم</option><option value="false">لا</option></select>
+
+          <label>قائمة المشاكل (سطر لكل نقطة)</label>
+          <textarea id="problemList"></textarea>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.03); padding:10px; border-radius:8px;">
+          <label style="margin-top:0">إظهار قسم الحل؟</label>
+          <select id="showSolution" style="margin-bottom:10px"><option value="true">نعم</option><option value="false">لا</option></select>
+
+          <label>نص الحل المختصر</label>
+          <input id="solutionText" />
+
+          <label>قائمة الحلول (سطر لكل نقطة)</label>
+          <textarea id="solutionList"></textarea>
+        </div>
+      </section>
+
+      <!-- 4. How & Examples -->
+      <section class="card">
+        <h2>كيف يعمل & أمثلة</h2>
+
+        <label>خطوات "كيف يعمل" (سطر لكل خطوة)</label>
+        <textarea id="howList"></textarea>
+
+        <label>ملاحظة "كيف يعمل" (Note)</label>
+        <input id="howNote" />
+
+        <label style="margin-top:20px; border-top:1px solid rgba(255,255,255,0.1); padding-top:10px;">الأمثلة (User | Bot)</label>
+        <div class="hint">اكتب: سؤال المستخدم | رد البوت</div>
+        <textarea id="examples" placeholder="علّمني الفاتحة | تمام بنبدأ آية آية...&#10;ما ودي أذاكر | فاهمك، خلنا نلعب شوي..."></textarea>
+      </section>
+
+      <!-- 5. Users Management -->
+      <section class="card" style="grid-column: 1 / -1;">
+        <h2>إدارة المستخدمين</h2>
+        <div style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; text-align:right;">
+                <thead>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                        <th style="padding:8px;">الاسم</th>
+                        <th style="padding:8px;">كلمة المرور</th>
+                        <th style="padding:8px;">الصلاحية</th>
+                        <th style="padding:8px;">إجراء</th>
+                    </tr>
+                </thead>
+                <tbody id="usersTable"></tbody>
+            </table>
+        </div>
+        <div class="row" style="background:rgba(255,255,255,0.05); padding:10px; border-radius:10px; align-items:end;">
+            <div style="flex:1"><label>اسم المستخدم</label><input id="newUser" /></div>
+            <div style="flex:1"><label>كلمة المرور</label><input id="newPass" /></div>
+            <div style="flex:1"><label>الصلاحية</label>
+                <select id="newRole" style="height:42px;">
+                    <option value="student">طالب</option>
+                    <option value="assistant">مساعد</option>
+                    <option value="admin">مدير</option>
+                </select>
+            </div>
+            <button class="btnP" id="btnAddUser" style="flex:0; min-width:80px;">إضافة</button>
+        </div>
+      </section>
+
+      <!-- 6. Advanced / JSON -->
+      <section class="card" style="grid-column: 1 / -1;">
+        <h2>نسخ احتياطي (JSON)</h2>
+        <div class="row">
+          <textarea id="jsonBox" spellcheck="false" style="min-height:80px; font-family:monospace;"></textarea>
+        </div>
+        <div class="row">
+          <button class="btnA" id="btnExport">نسخ JSON الحالي</button>
+          <button class="btnA" id="btnImport">استيراد JSON للموقع</button>
+          <button class="btnA" id="btnReset" style="color:#ff7d7d; border-color:rgba(255,125,125,0.3)">إرجاع ضبط المصنع</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script type="module">
+    import { getConfig, setConfig, replaceConfig, resetConfig, exportConfig, checkAuth } from "./assets/app.js";
+
+    // Protect Admin Page
+    checkAuth("admin");
+
+    const $ = (id)=>document.getElementById(id);
+
+    // Helpers to split/join textareas
+    const splitLines = (text) => text.split("\n").map(l=>l.trim()).filter(l=>l);
+    const joinLines = (arr) => (arr||[]).join("\n");
+
+    // KPI specific parsing: "Title | Desc"
+    const parseKPIs = (text) => splitLines(text).map(line => {
+      const [t, d] = line.split("|");
+      return { title: (t||"").trim(), desc: (d||"").trim() };
+    });
+    const formatKPIs = (arr) => (arr||[]).map(x => `${x.title} | ${x.desc}`).join("\n");
+
+    // Examples parsing: "User | Bot"
+    const parseExamples = (text) => splitLines(text).map(line => {
+      const [u, b] = line.split("|");
+      return { user: (u||"").trim(), bot: (b||"").trim() };
+    });
+    const formatExamples = (arr) => (arr||[]).map(x => `${x.user} | ${x.bot}`).join("\n");
+
+    let currentUsers = [];
+
+    // Simple HTML escape to prevent XSS in admin table
+    const esc = (s) => String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+    function renderUsers(users){
+      currentUsers = users || [];
+      const tb = $("usersTable");
+      tb.innerHTML = "";
+      currentUsers.forEach((u, i) => {
+        const tr = document.createElement("tr");
+        tr.style.borderBottom = "1px solid rgba(255,255,255,0.05)";
+        tr.innerHTML = `
+          <td style="padding:8px">${esc(u.name)}</td>
+          <td style="padding:8px">${esc(u.pass)}</td>
+          <td style="padding:8px"><span class="chip" style="font-size:12px; padding:4px 8px">${esc(u.role)}</span></td>
+          <td style="padding:8px"><button class="btnA" style="padding:4px 10px; font-size:12px; color:#ff7d7d; border-color:rgba(255,0,0,0.3)" data-idx="${i}">حذف</button></td>
+        `;
+        tb.appendChild(tr);
+      });
+
+      // Attach delete events
+      tb.querySelectorAll("button").forEach(btn => {
+        btn.addEventListener("click", () => {
+          if(confirm("حذف المستخدم؟")){
+            const idx = parseInt(btn.dataset.idx);
+            currentUsers.splice(idx, 1);
+            saveAll(); // Save immediately to persist
+          }
+        });
+      });
+    }
+
+    function loadUI(){
+      const cfg = getConfig();
+
+      // Brand
+      $("brandName").value = cfg.brandName || "";
+      $("logoChar").value = cfg.logoChar || "";
+      $("logoSize").value = cfg.logoSize || 40;
+      $("brandTag").value = cfg.brandTag || "";
+
+      // Colors
+      $("colBg").value = cfg.colors?.bg || "#000000";
+      $("colCard").value = cfg.colors?.card || "#111111";
+      $("colAccent").value = cfg.colors?.accent || "#3333ff";
+      $("colAccent2").value = cfg.colors?.accent2 || "#33ff33";
+
+      // Home
+      $("heroTitle").value = cfg.heroTitle || "";
+      $("heroSub").value = cfg.heroSub || "";
+      $("startTitle").value = cfg.startPage?.title || "";
+      $("startSub").value = cfg.startPage?.sub || "";
+      $("startBtn").value = cfg.startPage?.btn || "";
+
+      $("kpis").value = formatKPIs(cfg.kpis);
+
+      // Users
+      renderUsers(cfg.users);
+
+      // Problem
+      $("showProblem").value = String(cfg.showProblem ?? true);
+      $("problemList").value = joinLines(cfg.problemList);
+
+      // Solution
+      $("showSolution").value = String(cfg.showSolution ?? true);
+      $("solutionText").value = cfg.solutionText || "";
+      $("solutionList").value = joinLines(cfg.solutionList);
+
+      // How & Examples
+      $("howList").value = joinLines(cfg.howList);
+      $("howNote").value = cfg.howNote || "";
+      $("examples").value = formatExamples(cfg.examples);
+
+      // JSON Box
+      $("jsonBox").value = JSON.stringify(cfg, null, 2);
+    }
+
+    function readUI(){
+      const old = getConfig(); // Keep existing structure/nav if not edited here
+
+      return {
+        ...old,
+        brandName: $("brandName").value.trim(),
+        logoChar: $("logoChar").value.trim(),
+        logoSize: parseInt($("logoSize").value) || 40,
+        brandTag: $("brandTag").value.trim(),
+
+        colors: {
+          bg: $("colBg").value,
+          card: $("colCard").value,
+          accent: $("colAccent").value,
+          accent2: $("colAccent2").value
+        },
+
+        heroTitle: $("heroTitle").value.trim(),
+        heroSub: $("heroSub").value.trim(),
+        kpis: parseKPIs($("kpis").value),
+
+        startPage: {
+          title: $("startTitle").value.trim(),
+          sub: $("startSub").value.trim(),
+          btn: $("startBtn").value.trim()
+        },
+
+        users: currentUsers, // Saved from local variable which is updated by add/delete
+
+        showProblem: $("showProblem").value === "true",
+        problemList: splitLines($("problemList").value),
+
+        showSolution: $("showSolution").value === "true",
+        solutionText: $("solutionText").value.trim(),
+        solutionList: splitLines($("solutionList").value),
+
+        howList: splitLines($("howList").value),
+        howNote: $("howNote").value.trim(),
+        examples: parseExamples($("examples").value)
+      };
+    }
+
+    function saveAll() {
+      try {
+        const patch = readUI();
+        setConfig(patch);
+        loadUI();
+        // Force simple theme apply for immediate admin feedback (optional)
+        document.documentElement.style.setProperty("--bg", patch.colors.bg);
+        document.documentElement.style.setProperty("--card", patch.colors.card);
+        alert("تم حفظ جميع التغييرات بنجاح ✅");
+      } catch(e) {
+        alert("حدث خطأ أثناء الحفظ: " + e.message);
+      }
+    }
+
+    $("btnAddUser").addEventListener("click", () => {
+        const n = $("newUser").value.trim();
+        const p = $("newPass").value.trim();
+        const r = $("newRole").value;
+        if(n && p){
+            currentUsers.push({ id: Date.now(), name: n, pass: p, role: r });
+            $("newUser").value = "";
+            $("newPass").value = "";
+            renderUsers(currentUsers);
+            saveAll();
+        } else {
+            alert("يرجى تعبئة الاسم وكلمة المرور");
+        }
+    });
+
+    $("btnSaveTop").addEventListener("click", saveAll);
+
+    $("btnReset").addEventListener("click", ()=>{
+      if(confirm("هل أنت متأكد من استعادة الإعدادات الافتراضية؟ ستمسح كل تعديلاتك.")){
+        resetConfig();
+        loadUI();
+        alert("تمت الاستعادة ✅");
+      }
+    });
+
+    $("btnPreviewTop").addEventListener("click", ()=>{
+      window.open("./index.html", "_blank");
+    });
+
+    $("btnExport").addEventListener("click", ()=>{
+      $("jsonBox").value = exportConfig();
+      // Also copy to clipboard
+      navigator.clipboard.writeText($("jsonBox").value).then(()=>{
+        alert("تم نسخ كود JSON ✅");
+      });
+    });
+
+    $("btnImport").addEventListener("click", ()=>{
+      try{
+        const obj = JSON.parse($("jsonBox").value);
+        replaceConfig(obj);
+        loadUI();
+        alert("تم الاستيراد بنجاح ✅");
+      }catch(e){
+        alert("كود JSON غير صالح. تأكد من الصيغة.");
+      }
+    });
+
+    // Initial Load
+    loadUI();
+  </script>
 </body>
 </html>
