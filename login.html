@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>أستاذي | تسجيل الدخول</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body style="display:flex; flex-direction:column; min-height:100vh; justify-content:center; align-items:center;">
+
+  <div class="card" style="width:100%; max-width:400px;">
+    <div style="text-align:center; margin-bottom:20px;">
+        <div class="logo" style="margin:0 auto 12px; font-size:30px;">أ</div>
+        <h1 style="font-size:24px;">تسجيل الدخول</h1>
+        <p class="sub">مرحبًا بك مرة أخرى</p>
+    </div>
+
+    <form id="loginForm" style="display:flex; flex-direction:column; gap:16px;">
+        <div>
+            <label style="display:block; color:#a7b6cc; margin-bottom:6px; font-weight:bold; font-size:14px;">اسم المستخدم</label>
+            <input id="user" type="text" style="width:100%; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgba(0,0,0,.25); color:#fff; outline:none;" required />
+        </div>
+        <div>
+            <label style="display:block; color:#a7b6cc; margin-bottom:6px; font-weight:bold; font-size:14px;">كلمة المرور</label>
+            <input id="pass" type="password" style="width:100%; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgba(0,0,0,.25); color:#fff; outline:none;" required />
+        </div>
+
+        <div id="errorMsg" style="color:#ff7d7d; font-size:13px; text-align:center; display:none;"></div>
+
+        <button type="submit" class="btn" style="justify-content:center; width:100%; margin-top:10px;">دخول</button>
+        <a href="index.html" style="text-align:center; font-size:13px; color:#a7b6cc; margin-top:10px;">العودة للرئيسية</a>
+    </form>
+  </div>
+
+  <script type="module">
+    import { login, boot } from "./assets/app.js";
+    // Initialize theme
+    boot("login");
+
+    const $ = (id) => document.getElementById(id);
+
+    $("loginForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const u = $("user").value.trim();
+        const p = $("pass").value.trim();
+
+        const res = login(u, p);
+        if(res.success){
+            // Redirect based on role
+            if(res.user.role === "admin") window.location.href = "admin.html";
+            else window.location.href = "start.html";
+        } else {
+            const err = $("errorMsg");
+            err.textContent = res.msg;
+            err.style.display = "block";
+        }
+    });
+  </script>
+</body>
+</html>
